@@ -7,7 +7,7 @@ mixpanel.init('43bf5cf822d10ed429689bf333ad29b0')
 const App = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold text-gray-800 mb-3">과제 기한 연장기</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-3">과제 기한 연장 프로그램</h1>
       <p className="text-gray-700 text-sm">파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.</p>
       <p className="text-gray-700 text-sm mb-6">그 일단 만들기는 했는데... 어떻게 쓰는지는 알아서...</p>
       <form
