@@ -4,7 +4,9 @@ import createDummyFileBuffer from './utils/createDummyFile'
 const App = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold text-gray-800 mb-6">과제 기한 연장기</h1>
+      <h1 className="text-2xl font-bold text-gray-800 mb-3">과제 기한 연장기</h1>
+      <p className="text-gray-700 text-sm">파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.</p>
+      <p className="text-gray-700 text-sm mb-6">그 일단 만들기는 했는데... 어떻게 쓰는지는 알아서...</p>
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={(e) => {
@@ -31,6 +33,7 @@ const App = () => {
           <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full">다운로드</button>
         </div>
       </form>
+      <p className="text-gray-600 text-xs">jiwon.me © 2024</p>
     </div>
   )
 }
