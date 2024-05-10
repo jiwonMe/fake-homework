@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import createDummyFileBuffer from './utils/createDummyFile'
+import mixpanel from 'mixpanel-browser'
+
+mixpanel.init('0678f5c13bc7953ae9c2f1112de13dcf')
 
 const App = () => {
   return (
@@ -10,6 +13,10 @@ const App = () => {
       <form
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={(e) => {
+          mixpanel.track('Create / Save File', {
+            filename: (e.target as HTMLFormElement).filename.value,
+            filesize: Number((e.target as HTMLFormElement).filesize.value),
+          })
           e.preventDefault()
           const inputName = (e.target as HTMLFormElement).filename.value;
           const name = inputName.includes('.') ? inputName : `${inputName}.txt`;
@@ -34,6 +41,33 @@ const App = () => {
         </div>
       </form>
       <p className="text-gray-600 text-xs">jiwon.me © 2024</p>
+      <a onClick={() => {
+        mixpanel.track('Share URL')
+        // share on ios
+        if (navigator.share) {
+          navigator.share({
+            title: '과제 기한 연장기',
+            text: '파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.',
+            // current page url
+            url: window.location.href,
+          })
+        }
+
+        // share on android
+        if (navigator['share']) {
+          navigator['share']({
+            title: '과제 기한 연장기',
+            text: '파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.',
+            url: window.location.href,
+          })
+        }
+
+        // share on desktop
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(window.location.href)
+          alert('URL이 복사되었습니다.')
+        }
+      }} className="text-blue-500 text-xs cursor-pointer">공유하기</a>
     </div>
   )
 }
