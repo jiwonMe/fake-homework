@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "parcel build public/index.html",
+    "build": "parcel build public/index.html && pnpm run postbuild",
+    "postbuild": "cp public/robots.txt dist/robots.txt",
     "start": "parcel public/index.html"
   },
   "keywords": [],
