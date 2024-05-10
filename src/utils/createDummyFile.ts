@@ -1,10 +1,19 @@
+import getFileHeaderByExtension from "./getFileHeaderByExtension";
+
 function createDummyFileBuffer(name: string, size: number) {
   // Generate a buffer with the specified size filled with dummy data
   const buffer = new ArrayBuffer(size);
   const uint8View = new Uint8Array(buffer);
-  for (let i = 0; i < size; i++) {
-    // Fill the buffer with dummy data (e.g., 0)
-    uint8View[i] = 0;
+
+  // add file header
+  const header = getFileHeaderByExtension(name.split('.').pop())
+  for (let i = 0; i < header.length; i++) {
+    uint8View[i] = header.charCodeAt(i);
+  }
+
+  // else fill with random data
+  for (let i = header.length; i < size; i++) {
+    uint8View[i] = Math.floor(Math.random() * 256);
   }
 
   // Create a blob from the buffer and generate a URL for it

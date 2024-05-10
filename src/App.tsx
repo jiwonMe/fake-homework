@@ -15,6 +15,7 @@ const App = () => {
         onSubmit={(e) => {
           mixpanel.track('Create / Save File', {
             filename: (e.target as HTMLFormElement).filename.value,
+            extension: (e.target as HTMLFormElement).filename.value.split('.').pop(),
             filesize: Number((e.target as HTMLFormElement).filesize.value),
           })
           e.preventDefault()
