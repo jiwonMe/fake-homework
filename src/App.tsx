@@ -42,9 +42,10 @@ const App = () => {
       </form>
       <p className="text-gray-600 text-xs">jiwon.me © 2024</p>
       <a onClick={() => {
-        mixpanel.track('Share URL')
         // share on ios
         if (navigator.share) {
+        mixpanel.track('Share URL')
+
           navigator.share({
             title: '과제 기한 연장기',
             text: '파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.',
@@ -55,6 +56,8 @@ const App = () => {
 
         // share on android
         if (navigator['share']) {
+        mixpanel.track('Share URL')
+
           navigator['share']({
             title: '과제 기한 연장기',
             text: '파일 이름과 크기를 입력하면 해당 크기의 빈 파일을 다운로드합니다.',
@@ -62,10 +65,9 @@ const App = () => {
           })
         }
 
-        // share on desktop
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(window.location.href)
-          alert('URL이 복사되었습니다.')
+        else {
+          // fallback
+          alert('공유하기 기능을 지원하지 않는 브라우저입니다.')
         }
       }} className="text-blue-500 text-xs cursor-pointer">공유하기</a>
     </div>
