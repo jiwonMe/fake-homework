@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import createDummyFileBuffer from './utils/createDummyFile'
 import mixpanel from 'mixpanel-browser'
 
-mixpanel.init('0678f5c13bc7953ae9c2f1112de13dcf')
+mixpanel.init('43bf5cf822d10ed429689bf333ad29b0')
 
 const App = () => {
   return (
